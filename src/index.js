@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { ApolloProvider } from 'react-apollo';
 import apolloClient from './apolloConfig';
-import App from './Components/App';
+import { App } from './Components/App';
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>
