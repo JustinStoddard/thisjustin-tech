@@ -14,14 +14,12 @@ export const initialState = persistedState !== undefined ? persistedState : {
  */
 export const appReducer = (state, action) => {
   switch (action.type) {
-    case 'incremeant': {
+    case 'incremeant':
       state.count = state.count + action.payload
       break;
-    };
-    case 'decremeant': {
+    case 'decremeant':
       state.count = state.count - action.payload
       break;
-    };
     default:
       throw new Error("Invalid Action");
   };
