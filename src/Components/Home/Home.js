@@ -2,7 +2,6 @@ import React, { Fragment, useContext } from 'react';
 import { AppDispatchContext, AppStateContext } from '../App';
 import Resume from '../Resume/Resume';
 import Spacex from '../Spacex/Spacex';
-import Pokemon from '../Pokemon/Pokemon';
 import HomeStylesheet from './HomeStylesheet';
 
 const Home = () => {
