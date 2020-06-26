@@ -22,8 +22,8 @@ const HomeStylesheet = makeStyles(theme => createStyles({
     left: "0",
     height: "100%",
     minWidth: "100%",
-    "-moz-transition": "transform ease-in-out 0.6s",
-    transition: "transform ease-in-out 0.6s"
+    "-moz-transition": "transform ease-in-out 0.4s",
+    transition: "transform ease-in-out 0.4s"
   },
 }));
 
