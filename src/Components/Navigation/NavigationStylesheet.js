@@ -23,7 +23,7 @@ const NavigationStylesheet = makeStyles(theme => createStyles({
     "&:hover": {
       height: "85px",
       width: "85px",
-      margin: "45px 50px 45px 50px",
+      margin: "46px 50px 45px 50px",
       transition: "0.3s",
       boxShadow: "12px 12px rgba(0,0,0,0.7)",
       transform: "rotate(0deg)"

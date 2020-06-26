@@ -1,4 +1,4 @@
-import React, { createContext, lazy, Suspense, Fragment } from 'react';
+import React, { createContext, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useImmerReducer } from 'use-immer';
 import { appReducer, initialState } from './AppReducer';
@@ -36,20 +36,17 @@ export const App = () => {
                   <Route exact path="/virtual-business-card" component={VirtualBusinessCard} />
                 </Switch>
               ) : (
-                <Fragment>
-                  
-                  <Grid container className={classes.appBackground}>
-                    <Grid item xs={12}>
-                      <Navigation />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route exact path="/home" component={Home} />
-                      </Switch>
-                    </Grid>
+                <Grid container className={classes.appBackground}>
+                  <Grid item xs={12}>
+                    <Navigation />
                   </Grid>
-                </Fragment>
+                  <Grid item xs={12}>
+                    <Switch>
+                      <Route exact path="/" component={Home} />
+                      <Route exact path="/home" component={Home} />
+                    </Switch>
+                  </Grid>
+                </Grid>
               )}
             </Suspense>
           </Router>
