@@ -5,14 +5,14 @@ const useStyles = makeStyles({
 
 });
 
-const Home = () => {
+const LandingPage = () => {
   const classes = useStyles();
 
   return (
     <div>
-      <h1>Home</h1>
+      <h1>Landing Page</h1>
     </div>
   );
 };
 
-export default Home;
+export default LandingPage;

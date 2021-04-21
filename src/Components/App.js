@@ -1,44 +1,32 @@
-import React, { createContext } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useImmerReducer } from 'use-immer';
-import { appReducer, initialState } from './AppReducer';
-import Navigation from './Navigation/Navigation';
-import Home from './Home/Home';
-import VirtualBusinessCard from './VirtualBusinessCard/VirtualBusinessCard';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
+
+import PrivateRoute from '../Components/HOC/PrivateRoute';
+import LandingPage from '../Views/LandingPageView';
 import Theme from './Theme';
-import { CssBaseline, ThemeProvider, Grid } from '@material-ui/core';
 
-export const AppStateContext = createContext();
-export const AppDispatchContext = createContext();
+const HomeView = lazy(() => import('../Views/HomeView'));
+const NotFoundView = lazy(() => import('../Views/NotFoundView'));
 
-export const App = () => {
-  const [state, dispatch] = useImmerReducer(appReducer, initialState);
-  const isOnVirtualBusinessCardRoute = window.location.pathname === "/virtual-business-card";
-
+const App = () => {
   return (
-    <AppDispatchContext.Provider value={dispatch}>
-      <AppStateContext.Provider value={state}>
-        <ThemeProvider theme={Theme}>
-          <CssBaseline />
-          <Router>
-            <Switch>
-              {isOnVirtualBusinessCardRoute ? (
-                <Route exact path="/virtual-business-card" component={VirtualBusinessCard} />
-              ) : (
-                <Grid container>
-                  <Grid xs={12}>
-                    <Navigation />
-                  </Grid>
-                  <Grid xs={12}>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/home" component={Home} />
-                  </Grid>
-                </Grid>
-              )}
-            </Switch>
-          </Router>
-        </ThemeProvider>
-      </AppStateContext.Provider>
-    </AppDispatchContext.Provider>
+    <ThemeProvider theme={Theme}>
+      <CssBaseline />
+      <Router>
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <PrivateRoute exact path="/home" component={HomeView} />
+            <Route exact path="/404" component={NotFoundView} />
+            <Route path="*">
+              <Redirect to="/404" />
+            </Route>
+          </Switch>
+        </Suspense>
+      </Router>
+    </ThemeProvider>
   );
 };
+
+export default App;
